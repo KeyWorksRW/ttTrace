@@ -37,6 +37,7 @@
 
 #include <ttdebug.h>     // ttASSERT macros
 #include <ttlibspace.h>  // Master header file for ttLib
+#include <ttTR.h>        // Function for translating strings
 
 // atlbase.h must be included first so shut off formatting
 // clang-format off
@@ -135,6 +136,6 @@ typedef struct
 
 extern PROFILE uprof;
 
-constexpr const char* txtVersion = "ttTrace 2.2.6290.0";
-constexpr const char* txtCopyRight = "Copyright (c) 2000-2019 [Ralph Walden]";
-constexpr const char* txtAppName = "ttTrace";
+constexpr const auto txtVersion = "ttTrace 2.2.0";
+constexpr const auto txtCopyRight = "Copyright (c) 2000-2020 [Ralph Walden]";
+constexpr const auto txtAppName = "ttTrace";

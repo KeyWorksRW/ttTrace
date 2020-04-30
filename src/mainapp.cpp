@@ -8,6 +8,8 @@
 
 #include "pch.h"
 
+#include <ttparser.h>  // cmd -- Command line parser
+
 #include "aboutdlg.h"
 #include "mainfrm.h"
 #include "resource.h"
@@ -15,9 +17,29 @@
 
 CAppModule _Module;
 
-
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPTSTR /* lpstrCmdLine */, int nCmdShow)
 {
+    ttlib::cmd cmd;
+
+    cmd.addHelpOption("h|help", _tt(IDS_DISPLAY_HELP_MSG));
+
+    cmd.parse();
+
+    if (cmd.isHelpRequested())
+    {
+        ttlib::cstr msg;
+        msg += txtVersion;
+        msg += "\n";
+        msg += txtCopyRight;
+        msg += "\n\n";
+        for (auto& iter: cmd.getUsage())
+        {
+            msg += iter + "\n";
+        }
+        ttlib::MsgBox(msg, MB_OK);
+        return 0;
+    }
+
     HWND hwnd = FindWindow("KeyViewMsgs", NULL);
     if (hwnd)
     {

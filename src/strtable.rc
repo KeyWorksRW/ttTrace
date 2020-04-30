@@ -11,6 +11,7 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 
 STRINGTABLE
 BEGIN
+    IDS_DISPLAY_HELP_MSG     "display this help message"
 	IDS_FILE_MAPPING_ERROR	"Unable to create file mapping memory for messages"
 	IDS_FILE_SAVED		  	"Contents saved to "
 END
