@@ -164,9 +164,9 @@ void CMainFrame::OnSaveAs()
         file.ReadString(buffer);
 
         if (file.WriteFile(ofn.lpstrFile))
-            ttlib::MsgBox(ttlib::LoadStringEx(IDS_FILE_SAVED) + ofn.lpstrFile, "ttTrace", MB_OK);
+            ttlib::MsgBox(_tt(IDS_FILE_SAVED) + ofn.lpstrFile, "ttTrace", MB_OK);
         else
-            ttlib::MsgBox(ttlib::LoadStringEx(IDS_FILE_SAVED) + ofn.lpstrFile, "ttTrace");
+            ttlib::MsgBox(_tt(IDS_FILE_SAVED) + ofn.lpstrFile, "ttTrace");
     }
 }
 
