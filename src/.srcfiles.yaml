@@ -1,4 +1,4 @@
-# Requires ttBld.exe version 1.5.0 or higher to process
+# Requires ttBld.exe version 1.4.0 or higher to process -- see https://github.com/KeyWorksRW/ttBld
 
 Options:
     Project:     ttTrace      # project name
@@ -17,8 +17,6 @@ Options:
 
     IncDirs:     ../ttLib/include;../WTL/include  # additional directories for header files
     BuildLibs:   ../ttLib  # libraries that need to be built (added to makefile generation)
-
-    MakeDir:     bld           # auto-generate makefile in specified directory
 
 Files:
     trace.rc
