@@ -1,9 +1,8 @@
 /////////////////////////////////////////////////////////////////////////////
-// Name:		MainFrm.h
-// Purpose:
+// Purpose:     Main window frame
 // Author:		Ralph Walden
 // Copyright:	Copyright (c) 1998-2020 KeyWorks Software (Ralph Walden)
-// License:		Apache License (see LICENSE)
+// License:		Apache License -- see ../LICENSE
 /////////////////////////////////////////////////////////////////////////////
 
 #pragma once
@@ -67,6 +66,6 @@ protected:
 
 private:
     HANDLE m_hMapping;
-    char* m_pszMap;  // points to data in shared memory
+    char* m_pszMap { nullptr };  // points to data in shared memory
     ttlib::cstr m_cszLastMsg;
 };
