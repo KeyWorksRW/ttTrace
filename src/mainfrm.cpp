@@ -1,9 +1,8 @@
 /////////////////////////////////////////////////////////////////////////////
-// Name:		CMainFrame
-// Purpose:		Class for
+// Purpose:		Main frame window
 // Author:		Ralph Walden
-// Copyright:	Copyright (c) 1998-2019 KeyWorks Software (Ralph Walden)
-// License:		Apache License (see LICENSE)
+// Copyright:	Copyright (c) 1998-2020 KeyWorks Software (Ralph Walden)
+// License:		Apache License -- see ../LICENSE
 /////////////////////////////////////////////////////////////////////////////
 
 #include "pch.h"
@@ -117,15 +116,16 @@ void CMainFrame::OnGeneralMsg(WPARAM /* wParam */, LPARAM /* lParam */)
     m_cszLastMsg = m_pszMap;
 
     m_view.SetSel(-1, -1);
-    m_view.ReplaceSel(m_cszLastMsg.c_str());
+    ::SendMessageW(m_view, EM_REPLACESEL, (WPARAM) true, (LPARAM) m_cszLastMsg.to_utf16().c_str());
+
     m_view.SetSel(-1, -1);
-    m_view.ReplaceSel("\r\n");
+    m_view.ReplaceSel("\n");
 }
 
 void CMainFrame::OnTraceMsg(WPARAM /* wParam */, LPARAM /* lParam */)
 {
     m_view.SetSel(-1, -1);
-    m_view.ReplaceSel(m_pszMap);
+    ::SendMessageW(m_view, EM_REPLACESEL, (WPARAM) FALSE, (LPARAM) ttlib::utf8to16(m_pszMap).c_str());
 }
 
 void CMainFrame::OnClear(WPARAM /* wParam */, LPARAM /* lParam */)
