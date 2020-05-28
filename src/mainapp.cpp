@@ -1,9 +1,8 @@
 /////////////////////////////////////////////////////////////////////////////
-// Name:		mainapp.cpp
 // Purpose:		Application starting point
 // Author:		Ralph Walden
 // Copyright:	Copyright (c) 1998-2020 KeyWorks Software (Ralph Walden)
-// License:     Apache License (see ../LICENSE)
+// License:		Apache License -- see ../LICENSE
 /////////////////////////////////////////////////////////////////////////////
 
 #include "pch.h"

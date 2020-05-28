@@ -1,9 +1,8 @@
 /////////////////////////////////////////////////////////////////////////////
-// Name:		AboutDlg.h
-// Purpose:		Class for handling About Box
+// Purpose:		Class for displaying About Box
 // Author:      Ralph Walden
 // Copyright:   Copyright (c) 1998-2020 KeyWorks Software (Ralph Walden)
-// License:		Apache License (see LICENSE)
+// License:		Apache License -- see ../LICENSE
 /////////////////////////////////////////////////////////////////////////////
 
 #pragma once
@@ -12,7 +11,7 @@
     #include "resource.h"
 #endif
 
-#include <ttwindlg.h>  // Class for displaying a dialog
+#include <ttwindlg.h>  // dlg -- Class for displaying a dialog
 
 class CAboutDlg : public ttlib::dlg
 {
