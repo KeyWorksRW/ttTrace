@@ -35,9 +35,9 @@
 
 #include <stdint.h>
 
+#include <ttTR.h>        // Function for translating strings
 #include <ttdebug.h>     // ttASSERT macros
 #include <ttlibspace.h>  // Master header file for ttLib
-#include <ttTR.h>        // Function for translating strings
 
 // atlbase.h must be included first so shut off formatting
 // clang-format off
@@ -53,88 +53,18 @@ extern CAppModule _Module;
 
 #include "strtable.h"
 
-typedef struct
+struct TRACE_FLAGS
 {
-    BOOL fKeepOnTop : 1;
+    bool ShowGeneral { true };
+    bool ShowWarning { true };
+    bool ShowError { true };
 
-    BOOL fEventMessages : 1;
-    BOOL fPropertyMessages : 1;
-    BOOL fKeyHelpMessages : 1;
-    BOOL fGeneralMessages : 1;
-    BOOL fScriptMessages : 1;
+    bool ShowEvent { true };
+    bool ShowProperty { true };
+    bool ShowScript { true };
+};
 
-    // events
-
-    BOOL fTCard : 1;
-    BOOL fTCardText : 1;
-    BOOL fUserLevelChange : 1;
-    BOOL fInformationTypeChange : 1;
-    BOOL fStatusTextChange : 1;
-    BOOL fProgressChange : 1;
-    BOOL fCommandStateChange : 1;
-    BOOL fDownloadBegin : 1;
-    BOOL fDownloadComplete : 1;
-    BOOL fTitleChange : 1;
-    BOOL fWebBrowserPropertyChange : 1;
-    BOOL fBeforeNavigate : 1;
-    BOOL fNewWindow : 1;
-    BOOL fNavigateComplete : 1;
-    BOOL fDocumentComplete : 1;
-
-    BOOL fToolbarButton : 1;
-
-    // property changes
-
-    BOOL fChmFile : 1;
-    BOOL fInitialMapId : 1;
-    BOOL fUserLevel : 1;
-    BOOL fDefaultTopic : 1;
-    BOOL fConceptualInformation : 1;
-    BOOL fTimedInformation : 1;
-    BOOL fCustomInformation : 1;
-    BOOL fVerticalScrollBar : 1;
-    BOOL fHorizontalScrollBar : 1;
-    BOOL fWindowStyle : 1;
-    BOOL fWindowStyleEx : 1;
-
-    BOOL fHomeBtn : 1;
-    BOOL fBackBtn : 1;
-    BOOL fForwardBtn : 1;
-    BOOL fStopBtn : 1;
-    BOOL fRefreshBtn : 1;
-    BOOL fPrintBtn : 1;
-    BOOL fCloseBtn : 1;
-    BOOL fOptionsBtn : 1;
-    BOOL fBrowseButtons : 1;
-    BOOL fCustomID : 1;
-    BOOL fCustomLabel : 1;
-    BOOL fCustomImage : 1;
-    BOOL fCustomHandler : 1;
-    BOOL fBackgroundColor : 1;  // popup background color
-
-    // script messages
-
-    BOOL fControlPanel : 1;
-    BOOL fJumpChm : 1;
-    BOOL fDisplayDocument : 1;
-    BOOL fLaunchTriPane : 1;
-    BOOL fApplyInfoTypes : 1;
-    BOOL fSetUserLevel : 1;
-    BOOL fSetConceptualInfoType : 1;
-    BOOL fSetCustomInfoType : 1;
-    BOOL fToggleConceptualInformation : 1;
-    BOOL fToggleCustomInformation : 1;
-    BOOL fInitializeUserLevelInput : 1;
-    BOOL fRelatedTopicsMenu : 1;
-    BOOL fShortCut : 1;
-    BOOL fSendMessage : 1;
-
-    DWORD reserved1;  // reserved for future expansion
-    DWORD reserved2;
-    DWORD reserved3;
-} PROFILE;
-
-extern PROFILE uprof;
+extern TRACE_FLAGS uprof;
 
 constexpr const auto txtVersion = "ttTrace 2.2.0";
 constexpr const auto txtCopyRight = "Copyright (c) 2000-2020 [Ralph Walden]";

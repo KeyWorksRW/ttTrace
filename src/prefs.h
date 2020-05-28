@@ -1,9 +1,8 @@
 /////////////////////////////////////////////////////////////////////////////
-// Name:		Prefs.h
-// Purpose:		Class for setting what message to accept/ignore
+// Purpose:		Class for setting what messageS to show or hide
 // Author:		Ralph Walden
 // Copyright:	Copyright (c) 1998-2020 KeyWorks Software (Ralph Walden)
-// License:		Apache License (see ../LICENSE)
+// License:		Apache License -- see ../LICENSE
 /////////////////////////////////////////////////////////////////////////////
 
 #pragma once

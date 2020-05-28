@@ -18,7 +18,7 @@
 #include "prefs.h"
 #include "traceview.h"
 
-PROFILE uprof;
+TRACE_FLAGS uprof;
 
 BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 {
@@ -109,8 +109,11 @@ LRESULT CMainFrame::OnAppAbout(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCt
     return 0;
 }
 
-void CMainFrame::OnGeneralMsg(WPARAM /* wParam */, LPARAM /* lParam */)
+void CMainFrame::OnTraceGeneral(WPARAM /* wParam */, LPARAM /* lParam */)
 {
+    if (!uprof.ShowGeneral)
+        return;
+
     if (ttlib::issameas(m_pszMap, m_cszLastMsg, tt::CASE::either))
         return;  // duplicate message
     m_cszLastMsg = m_pszMap;
@@ -122,8 +125,47 @@ void CMainFrame::OnGeneralMsg(WPARAM /* wParam */, LPARAM /* lParam */)
     m_view.ReplaceSel("\n");
 }
 
-void CMainFrame::OnTraceMsg(WPARAM /* wParam */, LPARAM /* lParam */)
+void CMainFrame::OnTraceWarning(WPARAM /* wParam */, LPARAM /* lParam */)
 {
+    if (!uprof.ShowWarning)
+        return;
+
+    m_view.SetSel(-1, -1);
+    ::SendMessageW(m_view, EM_REPLACESEL, (WPARAM) FALSE, (LPARAM) ttlib::utf8to16(m_pszMap).c_str());
+}
+
+void CMainFrame::OnTraceError(WPARAM /* wParam */, LPARAM /* lParam */)
+{
+    if (!uprof.ShowError)
+        return;
+
+    m_view.SetSel(-1, -1);
+    ::SendMessageW(m_view, EM_REPLACESEL, (WPARAM) FALSE, (LPARAM) ttlib::utf8to16(m_pszMap).c_str());
+}
+
+void CMainFrame::OnTraceEvent(WPARAM /* wParam */, LPARAM /* lParam */)
+{
+    if (!uprof.ShowEvent)
+        return;
+
+    m_view.SetSel(-1, -1);
+    ::SendMessageW(m_view, EM_REPLACESEL, (WPARAM) FALSE, (LPARAM) ttlib::utf8to16(m_pszMap).c_str());
+}
+
+void CMainFrame::OnTraceProperty(WPARAM /* wParam */, LPARAM /* lParam */)
+{
+    if (!uprof.ShowProperty)
+        return;
+
+    m_view.SetSel(-1, -1);
+    ::SendMessageW(m_view, EM_REPLACESEL, (WPARAM) FALSE, (LPARAM) ttlib::utf8to16(m_pszMap).c_str());
+}
+
+void CMainFrame::OnTraceScript(WPARAM /* wParam */, LPARAM /* lParam */)
+{
+    if (!uprof.ShowScript)
+        return;
+
     m_view.SetSel(-1, -1);
     ::SendMessageW(m_view, EM_REPLACESEL, (WPARAM) FALSE, (LPARAM) ttlib::utf8to16(m_pszMap).c_str());
 }
@@ -173,5 +215,70 @@ void CMainFrame::OnSaveAs()
 void CMainFrame::OnPreferences()
 {
     CPreferences dlg;
-    dlg.DoModal(NULL);
+    dlg.DoModal(*this);
+}
+
+void CMainFrame::OnSetTitle(WPARAM /* wParam */, LPARAM /* lParam */)
+{
+    ::SetWindowTextW(*this, ttlib::utf8to16(m_pszMap).c_str());
+}
+
+void CMainFrame::OnHideTraceGeneral(WPARAM /* wParam */, LPARAM /* lParam */)
+{
+    uprof.ShowGeneral = false;
+}
+
+void CMainFrame::OnHideTraceEvent(WPARAM /* wParam */, LPARAM /* lParam */)
+{
+    uprof.ShowEvent = false;
+}
+
+void CMainFrame::OnHideTraceWarning(WPARAM /* wParam */, LPARAM /* lParam */)
+{
+    uprof.ShowWarning = false;
+}
+
+void CMainFrame::OnHideTraceProperty(WPARAM /* wParam */, LPARAM /* lParam */)
+{
+    uprof.ShowProperty = false;
+}
+
+void CMainFrame::OnHideTraceScript(WPARAM /* wParam */, LPARAM /* lParam */)
+{
+    uprof.ShowScript = false;
+}
+
+void CMainFrame::OnHideTraceError(WPARAM /* wParam */, LPARAM /* lParam */)
+{
+    uprof.ShowError = false;
+}
+
+void CMainFrame::OnShowTraceGeneral(WPARAM /* wParam */, LPARAM /* lParam */)
+{
+    uprof.ShowGeneral = true;
+}
+
+void CMainFrame::OnShowTraceEvent(WPARAM /* wParam */, LPARAM /* lParam */)
+{
+    uprof.ShowEvent = true;
+}
+
+void CMainFrame::OnShowTraceWarning(WPARAM /* wParam */, LPARAM /* lParam */)
+{
+    uprof.ShowWarning = true;
+}
+
+void CMainFrame::OnShowTraceProperty(WPARAM /* wParam */, LPARAM /* lParam */)
+{
+    uprof.ShowProperty = true;
+}
+
+void CMainFrame::OnShowTraceScript(WPARAM /* wParam */, LPARAM /* lParam */)
+{
+    uprof.ShowScript = true;
+}
+
+void CMainFrame::OnShowTraceError(WPARAM /* wParam */, LPARAM /* lParam */)
+{
+    uprof.ShowError = true;
 }

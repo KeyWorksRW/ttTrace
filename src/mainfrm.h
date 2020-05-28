@@ -39,24 +39,65 @@ public:
         MESSAGE_HANDLER(WM_DESTROY, OnDestroy)
 
         MSG_WMP_HANDLER(ttlib::WMP_CLEAR_TRACE, OnClear)
-        MSG_WMP_HANDLER(ttlib::WMP_TRACE_GENERAL, OnGeneralMsg);
-        MSG_WMP_HANDLER(ttlib::WMP_TRACE_MSG, OnTraceMsg);
+        MSG_WMP_HANDLER(ttlib::WMP_SET_TITLE, OnSetTitle)
 
-        COMMAND_ID_HANDLER(ID_APP_EXIT, OnFileExit)
-        COMMAND_ID_HANDLER(ID_VIEW_TOOLBAR, OnViewToolBar)
-        COMMAND_ID_HANDLER(ID_APP_ABOUT, OnAppAbout)
+        MSG_WMP_HANDLER(ttlib::WMP_TRACE_GENERAL, OnTraceGeneral);
+        MSG_WMP_HANDLER(ttlib::WMP_TRACE_EVENT, OnTraceEvent);
+        MSG_WMP_HANDLER(ttlib::WMP_TRACE_WARNING, OnTraceWarning);
+        MSG_WMP_HANDLER(ttlib::WMP_TRACE_PROPERTY, OnTraceProperty);
+        MSG_WMP_HANDLER(ttlib::WMP_TRACE_SCRIPT, OnTraceScript);
+        MSG_WMP_HANDLER(ttlib::WMP_TRACE_ERROR, OnTraceError);
+
+        MSG_WMP_HANDLER(ttlib::WMP_HIDE_GENERAL, OnHideTraceGeneral);
+        MSG_WMP_HANDLER(ttlib::WMP_HIDE_EVENT, OnHideTraceEvent);
+        MSG_WMP_HANDLER(ttlib::WMP_HIDE_WARNING, OnHideTraceWarning);
+        MSG_WMP_HANDLER(ttlib::WMP_HIDE_PROPERTY, OnHideTraceProperty);
+        MSG_WMP_HANDLER(ttlib::WMP_HIDE_SCRIPT, OnHideTraceScript);
+        MSG_WMP_HANDLER(ttlib::WMP_HIDE_ERROR, OnHideTraceError);
+
+        MSG_WMP_HANDLER(ttlib::WMP_SHOW_GENERAL, OnShowTraceGeneral);
+        MSG_WMP_HANDLER(ttlib::WMP_SHOW_EVENT, OnShowTraceEvent);
+        MSG_WMP_HANDLER(ttlib::WMP_SHOW_WARNING, OnShowTraceWarning);
+        MSG_WMP_HANDLER(ttlib::WMP_SHOW_PROPERTY, OnShowTraceProperty);
+        MSG_WMP_HANDLER(ttlib::WMP_SHOW_SCRIPT, OnShowTraceScript);
+        MSG_WMP_HANDLER(ttlib::WMP_SHOW_ERROR, OnShowTraceError);
+
+        COMMAND_ID_HANDLER(IDM_APP_EXIT, OnFileExit)
+        COMMAND_ID_HANDLER(IDM_VIEW_TOOLBAR, OnViewToolBar)
+        COMMAND_ID_HANDLER(IDM_APP_ABOUT, OnAppAbout)
         CHAIN_MSG_MAP(CUpdateUI<CMainFrame>)
         CHAIN_MSG_MAP(CFrameWindowImpl<CMainFrame>)
     END_MSG_MAP()
 
 protected:
     void OnClearView();
-    void OnClear(WPARAM /* wParam */, LPARAM /* lParam */);
     void OnPreferences();
-    void OnG15Line1(WPARAM /* wParam */, LPARAM /* lParam */);
     void OnSaveAs();
-    void OnGeneralMsg(WPARAM wParam, LPARAM lParam);
-    void OnTraceMsg(WPARAM wParam, LPARAM lParam);
+
+
+    void OnClear(WPARAM /* wParam */, LPARAM /* lParam */);
+    void OnSetTitle(WPARAM /* wParam */, LPARAM /* lParam */);
+
+    void OnTraceGeneral(WPARAM wParam, LPARAM lParam);
+    void OnTraceEvent(WPARAM wParam, LPARAM lParam);
+    void OnTraceWarning(WPARAM wParam, LPARAM lParam);
+    void OnTraceProperty(WPARAM wParam, LPARAM lParam);
+    void OnTraceScript(WPARAM wParam, LPARAM lParam);
+    void OnTraceError(WPARAM wParam, LPARAM lParam);
+
+    void OnHideTraceGeneral(WPARAM wParam, LPARAM lParam);
+    void OnHideTraceEvent(WPARAM wParam, LPARAM lParam);
+    void OnHideTraceWarning(WPARAM wParam, LPARAM lParam);
+    void OnHideTraceProperty(WPARAM wParam, LPARAM lParam);
+    void OnHideTraceScript(WPARAM wParam, LPARAM lParam);
+    void OnHideTraceError(WPARAM wParam, LPARAM lParam);
+
+    void OnShowTraceGeneral(WPARAM wParam, LPARAM lParam);
+    void OnShowTraceEvent(WPARAM wParam, LPARAM lParam);
+    void OnShowTraceWarning(WPARAM wParam, LPARAM lParam);
+    void OnShowTraceProperty(WPARAM wParam, LPARAM lParam);
+    void OnShowTraceScript(WPARAM wParam, LPARAM lParam);
+    void OnShowTraceError(WPARAM wParam, LPARAM lParam);
 
     LRESULT OnCreate(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/);
     LRESULT OnDestroy(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& bHandled);
