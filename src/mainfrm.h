@@ -74,7 +74,6 @@ protected:
     void OnPreferences();
     void OnSaveAs();
 
-
     void OnClear(WPARAM /* wParam */, LPARAM /* lParam */);
     void OnSetTitle(WPARAM /* wParam */, LPARAM /* lParam */);
 

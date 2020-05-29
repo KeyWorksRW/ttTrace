@@ -182,6 +182,7 @@ void CMainFrame::OnClearView()
     m_view.SetSel(0, -1);
     m_view.ReplaceSel("");
     m_view.SendMessage(EM_SCROLLCARET, (WPARAM) 0, (LPARAM) 0);
+    m_cszLastMsg.clear();
 }
 
 void CMainFrame::OnSaveAs()
